@@ -1,6 +1,9 @@
 import csv
 import xml.etree.ElementTree as ET
 
+# Prompt for the three-digit company code
+company_code = input("Enter the three-digit company code: ")
+
 # Initialize the XML structure
 root = ET.Element("Native", xmlns="http://www.cargowise.com/Schemas/Native/2011/11", version="2.0")
 header = ET.SubElement(root, "Header")
@@ -28,7 +31,7 @@ with open('contactList.csv', mode='r', newline='', encoding='utf-8-sig') as file
         controllingBranch = ET.SubElement(org_companyData, "ControllingBranch", Action="UPDATE")
         ET.SubElement(controllingBranch, "Code").text = row["Controlling Branch"]
         GlbCompany = ET.SubElement(org_companyData, "GlbCompany")
-        ET.SubElement(GlbCompany, "Code").text ="SWL"
+        ET.SubElement(GlbCompany, "Code").text = company_code
 
         # Create OrgContactCollection
         org_contact_collection = ET.SubElement(org_header, "OrgContactCollection")
