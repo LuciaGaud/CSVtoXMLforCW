@@ -17,10 +17,18 @@ with open('contactList.csv', mode='r', newline='', encoding='utf-8-sig') as file
         # Create Organization section
         organization = ET.SubElement(body, "Organization", version="2.0")
         org_header = ET.SubElement(organization, "OrgHeader", Action="UPDATE")
+        org_companyDataCollection = ET.SubElement(org_header, "OrgCompanyDataCollection")
+        org_companyData = ET.SubElement(org_companyDataCollection, "OrgCompanyData", Action="UPDATE")
         
         # Fill in Organization details
         ET.SubElement(org_header, "Code").text = row["Organisation Code"]
-        ET.SubElement(org_header, "FullName").text = row["Full Name"]
+        ET.SubElement(org_header, "JobCategory").text = row["Job Category"]
+
+        # Create Organization Company Data section
+        controllingBranch = ET.SubElement(org_companyData, "ControllingBranch", Action="UPDATE")
+        ET.SubElement(controllingBranch, "Code").text = row["Controlling Branch"]
+        GlbCompany = ET.SubElement(org_companyData, "GlbCompany")
+        ET.SubElement(GlbCompany, "Code").text ="SWL"
 
         # Create OrgContactCollection
         org_contact_collection = ET.SubElement(org_header, "OrgContactCollection")
@@ -31,14 +39,14 @@ with open('contactList.csv', mode='r', newline='', encoding='utf-8-sig') as file
         ET.SubElement(org_contact, "Language").text = "EN"
         ET.SubElement(org_contact, "NotifyMode").text = "EML"
         ET.SubElement(org_contact, "Title").text = row["Job Title"] or ""
-        ET.SubElement(org_contact, "JobCategory").text = "ONS"
+        ET.SubElement(org_contact, "JobCategory").text = row["Job Category"]
 
         # Format phone numbers and add fields
-        ET.SubElement(org_contact, "Phone").text = row["Phone Work"].split(',')[0].strip().replace("'", "")
+        ET.SubElement(org_contact, "Phone").text = row["PhoneWork"].split(',')[0].strip().replace("'", "")
         ET.SubElement(org_contact, "PhoneExtension").text = ""
         ET.SubElement(org_contact, "Fax").text = ""
         ET.SubElement(org_contact, "HomePhone").text = ""
-        ET.SubElement(org_contact, "Mobile").text = row["Phone Mobile"].split(',')[0].strip().replace("'", "")
+        ET.SubElement(org_contact, "Mobile").text = row["PhoneMobile"].split(',')[0].strip().replace("'", "")
         ET.SubElement(org_contact, "AttachmentType").text = "PDF"
         ET.SubElement(org_contact, "IsActive").text = "true"
         ET.SubElement(org_contact, "Email").text = row["Email"]
