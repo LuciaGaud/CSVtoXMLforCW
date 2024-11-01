@@ -7,6 +7,7 @@ This project provides a script to convert contact information from CSV files int
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Configuration](#configuration)
+- [Features and Assumptions](#features-and-assumptions)
 - [Upcoming Features](#upcoming-features)
 - [License](#license)
 
@@ -38,6 +39,7 @@ The current script (`CSVtoNativeXML.py`) reads contact information from a CSV fi
      ```bash
      python CSVtoNativeXML.py
      ```
+   - When prompted, enter the three-digit company code. This code will be used as the `GlbCompany` code in the XML structure.
    - The script will read `contactList.csv`, convert the data into the required XML format, and save the output as `output.xml` in the same directory.
 
 3. **Check the Output**:
