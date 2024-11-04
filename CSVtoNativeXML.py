@@ -41,7 +41,7 @@ with open('contactList.csv', mode='r', newline='', encoding='utf-8-sig') as file
         ET.SubElement(org_contact, "ContactName").text = row["Contact Name"]
         ET.SubElement(org_contact, "Language").text = "EN"
         ET.SubElement(org_contact, "NotifyMode").text = "EML"
-        ET.SubElement(org_contact, "Title").text = row["Job Title"] or ""
+        ET.SubElement(org_contact, "Title").text = row["Job Title"][:35] or ""
         ET.SubElement(org_contact, "JobCategory").text = row["Job Category"]
 
         # Format phone numbers and add fields
