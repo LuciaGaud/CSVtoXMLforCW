@@ -2,7 +2,7 @@ import csv
 import xml.etree.ElementTree as ET
 
 # Prompt for the three-digit company code
-company_code = input("Enter the three-digit company code: ")
+company_code = input("Enter the three-digit company code. Example SWL: ")
 
 # Initialize the XML structure
 root = ET.Element("Native", xmlns="http://www.cargowise.com/Schemas/Native/2011/11", version="2.0")
